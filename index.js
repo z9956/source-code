@@ -1,1 +1,3 @@
-console.log('hello parcel');
+import main from './src/examples';
+
+main();
