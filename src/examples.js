@@ -1,13 +1,10 @@
 import Eventbus from './eventbus.js';
+import flatten from './flatten.js';
+import deepClone from './deepClone.js';
 import './call-apply-bind.js';
 
 const log = (info, style) => {
-	console.log(`%c${info}%c ------------`, `color:${style ?? 'blue'}`);
-	// console.log(
-	// 	`%c ${info} %c, 'color:${
-	// 		style ?? 'blue'
-	// 	}','','color:orange;font-weight:bold'`,
-	// );
+	console.log(`%c ${info} ------------`, `color:${style ?? 'blue'}`);
 };
 
 const $root = document.getElementById('root');
@@ -102,8 +99,25 @@ function customBind() {
 }
 
 function main() {
-	log('eventbus');
 	eventbusMain();
+
+	log('deepClone');
+	const mm = {
+		a: 11,
+		a1: null,
+		b: [{ l: 5 }],
+		c: (param) => {
+			console.log({ param });
+		},
+	};
+
+	const nn = deepClone(mm);
+	mm.b[0].l = '000';
+	console.log(mm);
+	console.log(nn.c(123));
+
+	log('flatten');
+	console.log(flatten([[1, 2], 3, 5, [1, 2], [6, 7, [2, 3]]]));
 
 	log('customCall');
 	customCall();
