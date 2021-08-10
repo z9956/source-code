@@ -2,6 +2,7 @@ import Eventbus from './eventbus.js';
 import flatten from './flatten.js';
 import deepClone from './deepClone.js';
 import throttle from './throttle.js';
+import debounce from './debounce.js';
 import './call-apply-bind.js';
 
 const log = (info, style) => {
@@ -102,6 +103,15 @@ function customBind() {
 function main() {
 	eventbusMain();
 
+	log('debounce');
+	function test(e, content) {
+		console.log(e, content);
+	}
+	let testFn = debounce(test, 300);
+	document.onclick = function (e) {
+		testFn(e, 'debounce');
+	};
+
 	log('throttle');
 	const fun = throttle(() => {
 		console.error('throttle');
@@ -134,8 +144,8 @@ function main() {
 	log('customApply');
 	customApply();
 
-	log('customBind');
-	customBind();
+	// log('customBind');
+	// customBind(); //undefined
 }
 
 export default main;
