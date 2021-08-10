@@ -1,6 +1,7 @@
 import Eventbus from './eventbus.js';
 import flatten from './flatten.js';
 import deepClone from './deepClone.js';
+import throttle from './throttle.js';
 import './call-apply-bind.js';
 
 const log = (info, style) => {
@@ -100,6 +101,14 @@ function customBind() {
 
 function main() {
 	eventbusMain();
+
+	log('throttle');
+	const fun = throttle(() => {
+		console.error('throttle');
+	});
+	fun();
+	fun();
+	fun();
 
 	log('deepClone');
 	const mm = {
