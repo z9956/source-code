@@ -3,6 +3,7 @@ import flatten from './flatten.js';
 import deepClone from './deepClone.js';
 import throttle from './throttle.js';
 import debounce from './debounce.js';
+import CustomPromise from './customPromise.js';
 import './call-apply-bind.js';
 
 const log = (info, style) => {
@@ -146,6 +147,25 @@ function main() {
 
 	// log('customBind');
 	// customBind(); //undefined
+
+	log('CustomPromise');
+
+	new CustomPromise((resolve, reject) => {
+		console.log('初始化');
+
+		resolve();
+	})
+		.then(() => {
+			throw new Error('有哪里不对了');
+
+			console.log('执行「这个」”');
+		})
+		.catch(() => {
+			console.log('执行「那个」');
+		})
+		.then(() => {
+			console.log('执行「这个」，无论前面发生了什么');
+		});
 }
 
 export default main;
