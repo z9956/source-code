@@ -4,6 +4,7 @@ import deepClone from './deepClone.js';
 import throttle from './throttle.js';
 import debounce from './debounce.js';
 import CustomPromise from './customPromise.js';
+import fakeParseJSON from './fakeParseJSON.js';
 import './call-apply-bind.js';
 
 const log = (info, style) => {
@@ -103,6 +104,28 @@ function customBind() {
 
 function main() {
 	eventbusMain();
+
+	log('fakeParseJSON');
+	const json = JSON.stringify({
+		id: '06606f7c1b2248dda9bb8abcc95ccb71',
+		label: '删除/离职员工',
+		icon: '',
+		key: 'DEL_STAFF',
+		category: 'DEL_STAFF',
+		pid: '',
+		order: 1,
+		active: 1,
+		type: 'DEL_STAFF',
+		referType: 'STAFF',
+		referId: 'ff562f550c9d4ca5a9646786d5a12135',
+		status: 1,
+		createdBy: 'SYSTEM',
+		createdAt: 1628470728396,
+		updatedBy: 'SYSTEM',
+		updatedAt: 1628470728396,
+	});
+	console.log(json);
+	console.log(fakeParseJSON(json));
 
 	log('debounce');
 	function test(e, content) {
