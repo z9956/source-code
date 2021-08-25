@@ -6,6 +6,8 @@ import debounce from './debounce.js';
 import CustomPromise from './customPromise.js';
 import fakeParseJSON from './fakeParseJSON.js';
 import './call-apply-bind.js';
+import './array/forEach.js';
+import './array/map.js';
 
 const log = (info, style) => {
 	console.log(`%c ${info} ------------`, `color:${style ?? 'blue'}`);
@@ -189,6 +191,23 @@ function main() {
 		.then(() => {
 			console.log('执行「这个」，无论前面发生了什么');
 		});
+
+	log('MyForEach');
+	const list = ['a', 'b', 'c'];
+	list.myForEach((cur, index, arr) => {
+		console.log(cur, index, arr);
+	});
+
+	log('MyMap');
+	const newArr = [1, 2, 3].myMap(
+		function (item, index, arr) {
+			console.log(this[index], item, index, arr);
+			return item * 2;
+		},
+		[4, 5, 6],
+	);
+
+	console.log(newArr);
 }
 
 export default main;
